@@ -10,15 +10,20 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     public PlayerInputControl inputControl;
     public Vector2 inputDirection;
+    
     [Header("基本参数")]
     public float speed;
     public float JumpForce;
+
     private Rigidbody2D rb;
+    private PhysicsCheck physicsCheck;
 
     private void Awake()
     {
         inputControl = new PlayerInputControl();
         rb = GetComponent<Rigidbody2D>();
+        physicsCheck = GetComponent<PhysicsCheck>();
+
         inputControl.GamePlay.Jump.started += jump;
     }
     private void OnEnable()
@@ -47,6 +52,7 @@ public class PlayerController : MonoBehaviour
     private void jump(InputAction.CallbackContext context)
     {
         // Debug.Log("Jump");
-        rb.AddForce(transform.up * JumpForce, ForceMode2D.Impulse);
+        if(physicsCheck.isGround)
+            rb.AddForce(transform.up * JumpForce, ForceMode2D.Impulse);
     }
 }
