@@ -559,7 +559,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char_blue_1_22
+      name: jump1-1
       rect:
         serializedVersion: 2
         x: 0
@@ -580,7 +580,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char_blue_1_23
+      name: jump1-2
       rect:
         serializedVersion: 2
         x: 56
@@ -601,7 +601,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char_blue_1_24
+      name: jump2-1
       rect:
         serializedVersion: 2
         x: 112
@@ -622,7 +622,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char_blue_1_25
+      name: jump2-2
       rect:
         serializedVersion: 2
         x: 168
@@ -643,7 +643,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char_blue_1_26
+      name: jump2-3
       rect:
         serializedVersion: 2
         x: 224
@@ -664,7 +664,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char_blue_1_27
+      name: jump2-4
       rect:
         serializedVersion: 2
         x: 280
@@ -685,7 +685,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char_blue_1_28
+      name: jump3-1
       rect:
         serializedVersion: 2
         x: 336
@@ -706,7 +706,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char_blue_1_29
+      name: jump3-2
       rect:
         serializedVersion: 2
         x: 392
@@ -727,7 +727,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char_blue_1_30
+      name: jump3-3
       rect:
         serializedVersion: 2
         x: 0
@@ -748,7 +748,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char_blue_1_31
+      name: jump4-1
       rect:
         serializedVersion: 2
         x: 56
@@ -769,7 +769,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char_blue_1_32
+      name: jump4-2
       rect:
         serializedVersion: 2
         x: 112
@@ -790,7 +790,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char_blue_1_33
+      name: jump4-3
       rect:
         serializedVersion: 2
         x: 168
@@ -811,7 +811,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char_blue_1_34
+      name: jump4-4
       rect:
         serializedVersion: 2
         x: 224
@@ -832,7 +832,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char_blue_1_35
+      name: jump5-1
       rect:
         serializedVersion: 2
         x: 280
@@ -853,7 +853,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char_blue_1_36
+      name: jump5-2
       rect:
         serializedVersion: 2
         x: 336
@@ -874,7 +874,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char_blue_1_37
+      name: jump5-3
       rect:
         serializedVersion: 2
         x: 392
@@ -1550,23 +1550,7 @@ TextureImporter:
       char_blue_1_2: 1137596978
       char_blue_1_20: -484081915
       char_blue_1_21: -470547620
-      char_blue_1_22: -1886489504
-      char_blue_1_23: 1828633129
-      char_blue_1_24: 2083434190
-      char_blue_1_25: 1264243339
-      char_blue_1_26: -620990717
-      char_blue_1_27: 184481465
-      char_blue_1_28: -636049326
-      char_blue_1_29: 382407654
       char_blue_1_3: -979420823
-      char_blue_1_30: -903514747
-      char_blue_1_31: -904855867
-      char_blue_1_32: 781104408
-      char_blue_1_33: -685892467
-      char_blue_1_34: -220242316
-      char_blue_1_35: 1728096735
-      char_blue_1_36: 822415386
-      char_blue_1_37: 1347919515
       char_blue_1_38: -151881798
       char_blue_1_39: 894862701
       char_blue_1_4: 1974899001
@@ -1603,6 +1587,22 @@ TextureImporter:
       char_blue_1_7: 1498171699
       char_blue_1_8: 743608709
       char_blue_1_9: -1899453936
+      jump1-1: -1886489504
+      jump1-2: 1828633129
+      jump2-1: 2083434190
+      jump2-2: 1264243339
+      jump2-3: -620990717
+      jump2-4: 184481465
+      jump3-1: -636049326
+      jump3-2: 382407654
+      jump3-3: -903514747
+      jump4-1: -904855867
+      jump4-2: 781104408
+      jump4-3: -685892467
+      jump4-4: -220242316
+      jump5-1: 1728096735
+      jump5-2: 822415386
+      jump5-3: 1347919515
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
