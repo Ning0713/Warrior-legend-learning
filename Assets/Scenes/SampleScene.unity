@@ -723,7 +723,7 @@ Tilemap:
       - {fileID: -605465230, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: 543098401, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: -1012806709, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
-      m_AnimationSpeed: 7
+      m_AnimationSpeed: 7.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 3, y: -7, z: 0}
@@ -800,7 +800,7 @@ Tilemap:
       - {fileID: -42322552, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: -1421330255, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: 411272712, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
-      m_AnimationSpeed: 7.0000005
+      m_AnimationSpeed: 7
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: -5, z: 0}
@@ -855,7 +855,7 @@ Tilemap:
       - {fileID: -605465230, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: 543098401, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: -1012806709, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
-      m_AnimationSpeed: 7.0000005
+      m_AnimationSpeed: 7
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 3, y: -3, z: 0}
@@ -932,7 +932,7 @@ Tilemap:
       - {fileID: -42322552, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: -1421330255, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: 411272712, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
-      m_AnimationSpeed: 7.0000005
+      m_AnimationSpeed: 7
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: -1, z: 0}
@@ -976,7 +976,7 @@ Tilemap:
       - {fileID: 765803606, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: 975065553, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: 1271963566, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
-      m_AnimationSpeed: 7.0000005
+      m_AnimationSpeed: 7
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 2, y: 1, z: 0}
@@ -1130,7 +1130,7 @@ Tilemap:
       - {fileID: -42322552, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: -1421330255, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: 411272712, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
-      m_AnimationSpeed: 7
+      m_AnimationSpeed: 7.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: 5, z: 0}
@@ -1574,7 +1574,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 292094533}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: ebdfc3c8992e7cd4e8a51998a8297027, type: 2}
+  m_Material: {fileID: 6200000, guid: d6c625d935b8179469947898e4908e57, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1640,9 +1640,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputDirection: {x: 0, y: 0}
-  speed: 260
+  speed: 290
   JumpForce: 16.5
+  coll: {fileID: 0}
   hurtForce: 8
+  normal: {fileID: 6200000, guid: d6c625d935b8179469947898e4908e57, type: 2}
+  wall: {fileID: 6200000, guid: ebdfc3c8992e7cd4e8a51998a8297027, type: 2}
   isHurt: 0
   isDead: 0
   isAttack: 0
@@ -2047,7 +2050,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &504060248
 Transform:
   m_ObjectHideFlags: 0
@@ -4808,7 +4811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1259038647
 Transform:
   m_ObjectHideFlags: 0
@@ -5064,8 +5067,10 @@ GameObject:
   - component: {fileID: 1874136219}
   - component: {fileID: 1874136218}
   - component: {fileID: 1874136222}
+  - component: {fileID: 1874136226}
   - component: {fileID: 1874136224}
   - component: {fileID: 1874136223}
+  - component: {fileID: 1874136225}
   m_Layer: 8
   m_Name: Boar
   m_TagString: Untagged
@@ -5276,7 +5281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 50
   currentHealth: 0
-  invulnerableDuration: 0
+  invulnerableDuration: 1
   invulnerable: 0
   OnTakeDamage:
     m_PersistentCalls:
@@ -5284,6 +5289,43 @@ MonoBehaviour:
   onDie:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1874136225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874136217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f4aa10661b8f1445beff4ed76b5a3b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSpeed: 100
+  chaseSpeed: 260
+  currentSpeed: 0
+  faceDir: {x: 0, y: 0, z: 0}
+--- !u!95 &1874136226
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874136217}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 29ca5060b09dee940a8b40b94d1abc91, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2037998371
 GameObject:
   m_ObjectHideFlags: 0
@@ -5301,7 +5343,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2037998372
 Transform:
   m_ObjectHideFlags: 0
