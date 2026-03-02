@@ -723,7 +723,7 @@ Tilemap:
       - {fileID: -605465230, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: 543098401, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: -1012806709, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
-      m_AnimationSpeed: 7.0000005
+      m_AnimationSpeed: 7
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 3, y: -7, z: 0}
@@ -833,7 +833,7 @@ Tilemap:
       - {fileID: -42322552, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: -1421330255, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: 411272712, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
-      m_AnimationSpeed: 7
+      m_AnimationSpeed: 7.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: -4, z: 0}
@@ -954,7 +954,7 @@ Tilemap:
       - {fileID: -605465230, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: 543098401, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: -1012806709, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
-      m_AnimationSpeed: 7
+      m_AnimationSpeed: 7.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 3, y: 0, z: 0}
@@ -1130,7 +1130,7 @@ Tilemap:
       - {fileID: -42322552, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: -1421330255, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
       - {fileID: 411272712, guid: c2a474acae13ec44f9b2c6e56ba142db, type: 3}
-      m_AnimationSpeed: 7.0000005
+      m_AnimationSpeed: 7
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 4, y: 5, z: 0}
@@ -1661,12 +1661,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff2005193f37ea4dbc85c73825089ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coll: {fileID: 0}
+  manual: 1
   bottomOffset: {x: -0.07, y: 0}
-  checkRadius: 0.05
+  leftOffset: {x: -0.32, y: 0.94}
+  rightOffset: {x: 0.32, y: 0.95}
+  checkRadius: 0.1
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   isGround: 0
+  touchLeftWall: 0
+  touchRightWall: 0
 --- !u!95 &292094540
 Animator:
   serializedVersion: 5
@@ -4476,7 +4482,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -5071,6 +5077,7 @@ GameObject:
   - component: {fileID: 1874136224}
   - component: {fileID: 1874136223}
   - component: {fileID: 1874136225}
+  - component: {fileID: 1874136227}
   m_Layer: 8
   m_Name: Boar
   m_TagString: Untagged
@@ -5305,6 +5312,9 @@ MonoBehaviour:
   chaseSpeed: 260
   currentSpeed: 0
   faceDir: {x: 0, y: 0, z: 0}
+  waitTime: 2
+  waitTimeCounter: 0
+  wait: 0
 --- !u!95 &1874136226
 Animator:
   serializedVersion: 5
@@ -5326,6 +5336,30 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1874136227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874136217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff2005193f37ea4dbc85c73825089ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: {fileID: 0}
+  manual: 1
+  bottomOffset: {x: -1.38, y: 0}
+  leftOffset: {x: -1.1, y: 0.7}
+  rightOffset: {x: 0.72, y: 0.71}
+  checkRadius: 0.1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  isGround: 0
+  touchLeftWall: 0
+  touchRightWall: 0
 --- !u!1 &2037998371
 GameObject:
   m_ObjectHideFlags: 0
