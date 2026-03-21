@@ -1,23 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
 
 public class Enemy : MonoBehaviour
 {
     Rigidbody2D rb;
     protected Animator anim;
     PhysicsCheck physicsCheck;
+
     [Header("基本参数")]
     public float normalSpeed;
     public float chaseSpeed;
     public float currentSpeed;
     public Vector3 faceDir;
+    public float hurtForce;
+    public Transform attacker;
 
     [Header("计时器")]
     public float waitTime;
     public float waitTimeCounter;
     public bool wait;
-    private float walkAwayBuffer;
+
+    [Header("状态")]
+    public bool isHurt;
+    public bool isDead;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -38,12 +46,19 @@ public class Enemy : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Move();
+        if (!isHurt && !isDead)
+        {
+            Move();
+        }
+        
     }
     public virtual void Move()
     {
-        rb.velocity = new Vector2(currentSpeed * faceDir.x * Time.deltaTime, rb.velocity.y);
+         rb.velocity = new Vector2(currentSpeed * faceDir.x * Time.deltaTime, rb.velocity.y);  
     }
+    /// <summary>
+    /// 计时器
+    /// </summary>
     public void TimeCounter()
     {
         if(wait)
@@ -54,7 +69,41 @@ public class Enemy : MonoBehaviour
                 wait = false;
                 waitTimeCounter = waitTime;
                 transform.localScale = new Vector3(faceDir.x, 1, 1);
+                anim.SetBool("walk", true);
             }
         }
+    }
+
+    public void OnTakeDamage(Transform attackTrans)
+    {
+        attacker = attackTrans;
+        if (attackTrans.position.x - transform.position.x > 0)
+            transform.localScale = new Vector3(-1, 1, 1);
+        if (attackTrans.position.x - transform.position.x < 0)
+            transform.localScale = new Vector3(1, 1, 1);
+    
+        isHurt = true;
+        anim.SetTrigger("hurt");
+        
+        Vector2 dir = new Vector2(transform.position.x - attackTrans.position.x, 0).normalized; 
+        StartCoroutine(onHurt(dir));
+    }
+    //协程的迭代器
+    IEnumerator onHurt(Vector2 dir)
+    {
+        rb.AddForce(dir * hurtForce, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.45f);
+        isHurt = false;
+    }
+    public void OnDie()
+    {
+        gameObject.layer = 2;
+        anim.SetBool("dead", true);
+        isDead = true;
+    }
+
+    public void OnDestroyAfterAnimation()
+    {
+        Destroy(this.gameObject);
     }
 }
