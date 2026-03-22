@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,27 +7,39 @@ using UnityEngine.Rendering.VirtualTexturing;
 public class Enemy : MonoBehaviour
 {
     Rigidbody2D rb;
-    protected Animator anim;
-    PhysicsCheck physicsCheck;
+    [HideInInspector] public Animator anim;
+    [HideInInspector] public PhysicsCheck physicsCheck;
 
-    [Header("ª˘±æ≤Œ ˝")]
+    [Header("Âü∫Êú¨ÂèÇÊï∞")]
     public float normalSpeed;
     public float chaseSpeed;
-    public float currentSpeed;
+    [HideInInspector] public float currentSpeed;
     public Vector3 faceDir;
     public float hurtForce;
     public Transform attacker;
 
-    [Header("º∆ ±∆˜")]
+    [Header("Ê£ÄÊµã")]
+    public Vector2 centerOffset;
+    public Vector2 checkSize;
+    public float checkDistance;
+    public LayerMask attackerLayer;
+    
+    [Header("ËÆ°Êó∂Âô®")]
     public float waitTime;
     public float waitTimeCounter;
     public bool wait;
+    public float lostTime;
+    public float lostTimeCounter;
 
-    [Header("◊¥Ã¨")]
+    [Header("Áä∂ÊÄÅ")]
     public bool isHurt;
     public bool isDead;
 
-    private void Awake()
+    private BaseState currentState;
+    protected BaseState patrolState;
+    protected BaseState chaseState;
+
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -34,30 +47,36 @@ public class Enemy : MonoBehaviour
         currentSpeed = normalSpeed;
         waitTimeCounter = waitTime;
     }
+    private void OnEnable()
+    {
+        currentState = patrolState;
+        currentState.OnEnter(this);
+    }
     private void Update()
     {
         faceDir = new Vector3(-transform.localScale.x, 0, 0);
-        if (!wait && physicsCheck.touchLeftWall)
-        {
-            wait = true;
-            anim.SetBool("walk", false);
-        }
+ 
+        currentState.LogicUpdate();
         TimeCounter();
     }
     private void FixedUpdate()
     {
-        if (!isHurt && !isDead)
+        if (!isHurt && !isDead && !wait)
         {
             Move();
         }
-        
+        currentState.PhysicsUpdate();
+    }
+    private void OnDisable()
+    {
+        currentState.OnExit();   
     }
     public virtual void Move()
     {
          rb.velocity = new Vector2(currentSpeed * faceDir.x * Time.deltaTime, rb.velocity.y);  
     }
     /// <summary>
-    /// º∆ ±∆˜
+    /// ËÆ°Êó∂Âô®
     /// </summary>
     public void TimeCounter()
     {
@@ -72,8 +91,32 @@ public class Enemy : MonoBehaviour
                 anim.SetBool("walk", true);
             }
         }
+
+        if (!FoundPlayer() && lostTimeCounter >0)
+        {
+            lostTimeCounter -= Time.deltaTime;
+        }
+
+    }
+    public bool FoundPlayer()
+    {
+        return Physics2D.BoxCast(transform.position + (Vector3)centerOffset,checkSize,0,faceDir,checkDistance,attackerLayer);
+    }
+    public void SwitchState(NPCState state)
+    {
+        var newState = state switch
+        {
+            NPCState.Patrol => patrolState,
+            NPCState.Chase => chaseState,
+            _ => null,
+        };
+
+        currentState.OnExit();
+        currentState = newState;
+        currentState.OnEnter(this);
     }
 
+    #region ‰∫ã‰ª∂ÊâßË°åÊñπÊ≥ï
     public void OnTakeDamage(Transform attackTrans)
     {
         attacker = attackTrans;
@@ -84,11 +127,11 @@ public class Enemy : MonoBehaviour
     
         isHurt = true;
         anim.SetTrigger("hurt");
-        
-        Vector2 dir = new Vector2(transform.position.x - attackTrans.position.x, 0).normalized; 
+        Vector2 dir = new Vector2(transform.position.x - attackTrans.position.x, 0).normalized;
+        rb.velocity = new Vector2(0, rb.velocity.y);
         StartCoroutine(onHurt(dir));
     }
-    //–≠≥Ãµƒµ¸¥˙∆˜
+    //ÂçèÁ®ãÁöÑËø≠‰ª£Âô®
     IEnumerator onHurt(Vector2 dir)
     {
         rb.AddForce(dir * hurtForce, ForceMode2D.Impulse);
@@ -105,5 +148,11 @@ public class Enemy : MonoBehaviour
     public void OnDestroyAfterAnimation()
     {
         Destroy(this.gameObject);
+    }
+    #endregion
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position + (Vector3)centerOffset + new Vector3(checkDistance*-transform.localScale.x,0), 0.2f);
     }
 }
